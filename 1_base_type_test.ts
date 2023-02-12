@@ -65,3 +65,25 @@ class Person {
     this.name = name;
   }
 }
+
+// Intersection 타입 - 엄격
+type Pat = { name: string };
+//type Pat = { age: number }; // Error
+type Cat = { age: number } & Pat;
+
+// Never 타입
+type God = { where: string }
+type Devil = { where: number }
+let who: God & Devil
+//who = { where: 'here' } // Error
+
+// Interface 타입 - 유연
+interface Human {
+  name: string
+}
+interface Human {
+  age: number
+}
+interface Student extends Human {
+  grade: number
+}
