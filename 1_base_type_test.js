@@ -39,3 +39,72 @@ var Person = /** @class */ (function () {
     }
     return Person;
 }());
+var who;
+// Narrowing 1 - typeof
+function printMsg1(msg) {
+    if (typeof msg === "string") {
+        console.log(msg);
+    }
+    else if (typeof msg === "undefined") {
+        // Do Nothing
+    }
+    else {
+        // Do Nothing
+    }
+}
+// Narrowing 2 - check undefined
+function printMsg2(msg) {
+    if (msg && typeof msg === "string") {
+        console.log(msg);
+    }
+}
+// Narrowing 3 - assertion
+function printMsg3(msg) {
+    console.log(msg);
+}
+function printMsg4(msg) {
+    if ("swim" in msg) {
+        console.log(msg.swim);
+    }
+    else if ("fly" in msg) {
+        console.log(msg.fly);
+    }
+    else {
+        // Do Nothing
+    }
+}
+// Narrowing 5 - instanceof
+var Knight = /** @class */ (function () {
+    function Knight() {
+    }
+    Knight.prototype.Sword = function () { return "Knight - Sword"; };
+    return Knight;
+}());
+var Mage = /** @class */ (function () {
+    function Mage() {
+    }
+    Mage.prototype.Magic = function () { return "Mage - Magic"; };
+    return Mage;
+}());
+function printMsg5(msg) {
+    if (msg instanceof Knight) {
+        console.log(msg.Sword());
+    }
+    else if (msg instanceof Mage) {
+        console.log(msg.Magic());
+    }
+    else {
+        // Do Nothing
+    }
+}
+function printMsg6(msg) {
+    if (msg.where === 'sea') {
+        console.log(msg.swim);
+    }
+    else if (msg.where === 'sky') {
+        console.log(msg.fly);
+    }
+    else {
+        // Do Nothing
+    }
+}

@@ -87,3 +87,69 @@ interface Human {
 interface Student extends Human {
   grade: number
 }
+
+// Narrowing 1 - typeof
+function printMsg1(msg: string | undefined) {
+  if (typeof msg === "string") {
+    console.log(msg);
+  } else if (typeof msg === "undefined") {
+    // Do Nothing
+  } else {
+    // Do Nothing
+  }
+}
+
+// Narrowing 2 - check undefined
+function printMsg2(msg: string | undefined) {
+  if (msg && typeof msg === "string") {
+    console.log(msg);
+  }
+}
+
+// Narrowing 3 - assertion
+function printMsg3(msg: string | undefined) {
+  console.log(msg as string);
+}
+
+// Narrowing 4 - in
+type Fish = { swim: string };
+type Bird = { fly: string };
+function printMsg4(msg: Fish | Bird) {
+  if ("swim" in msg) {
+    console.log(msg.swim);
+  } else if ("fly" in msg) {
+    console.log(msg.fly);
+  } else {
+    // Do Nothing
+  }
+}
+
+// Narrowing 5 - instanceof
+class Knight {
+  Sword(): string { return "Knight - Sword"; }
+}
+class Mage {
+  Magic(): string { return "Mage - Magic"; }
+}
+function printMsg5(msg: Knight | Mage) {
+  if (msg instanceof Knight) {
+    console.log(msg.Sword());
+  } else if (msg instanceof Mage) {
+    console.log(msg.Magic());
+  } else {
+    // Do Nothing
+  }
+}
+
+// Narrowing 6 - literal type
+type Fish2 = { swim: string, where: 'sea' };
+type Bird2 = { fly: string, where: 'sky' };
+function printMsg6(msg: Fish2 | Bird2) {
+  if (msg.where === 'sea') {
+    console.log(msg.swim);
+  } else if (msg.where === 'sky') {
+    console.log(msg.fly);
+  } else {
+    // Do Nothing
+  }
+}
